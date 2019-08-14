@@ -72,3 +72,54 @@ class Array {
 // Array { length: 9, _capacity: 12, ptr: 3 }. 
 
 //Length decreased from 12 to 9 because it was 'pop'ped with 3 elements , deleting the last three elements that had been pushed.  Capacity and pointer stay unchanged.
+
+//4. Print the first item in the array arr: 3
+// empty the array and add just 1 item arr.push('tauhida');
+//print this one item. what is the result? can you exlain?
+//Result is NaN, because the data type is a tring and it exceeds the limit for the constructor obj in the memory module Float64Array(1064). It can be changed to arrayBuffer to support the data type value.
+
+//The purpose of the _resize() function is to increase the capacity when the array length is equal or greater than the capacity. It also changes the position of the ptr to the beginning of the newly empty spaces allocated.
+
+//5. replace empty spaces with %20:
+const urlify = function (string) {
+    let newUrl = '';
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] === ' ') {
+            newUrl += '%20';
+        } else {
+            newUrl += string[i];
+        }
+    }
+    return newUrl;
+};
+
+//6. Filtering an array. write al algo to remove all numbers less than 5 from an array. don't use .filter().
+
+const filterFive = function (arr) {
+    const nonFive = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 5) {
+            nonFive.push(arr[i]);
+        }
+    }
+    return nonFive;
+}
+
+//7. max sum in the array:
+//write an algo which you will find the largest sum in the continuous sequence.
+function maxSum(arr) {
+    let maxSum = 0;
+    for (let i = 0; i < arr.length; i++) {
+
+        let sum = arr[i];
+        //nested
+        for (let j = 1 + i; j <= arr.length; j++) {
+            sum += arr[j];
+            if (sum > maxSum) {
+                maxSum = sum;
+            }
+
+        }
+    }
+    return maxSum;
+}
