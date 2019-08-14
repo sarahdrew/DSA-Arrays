@@ -123,3 +123,100 @@ function maxSum(arr) {
     }
     return maxSum;
 }
+
+//8. merge arrays
+//write an algo to merge two arrays intto single array which should be sorted
+function mergeArrays(array1, array2) {
+    const mergeArray = [];
+
+    for (let i = 0; i < array1.length; i++) {
+        mergeArray.push(array1[i]);
+    }
+    for (let i = 0; i < array2.length; i++) {
+        mergeArray.push(array2[i]);
+    }
+    let temp = "";
+    let currentMin = "";
+    for (let i = 0; i < mergeArray.length; i++) {
+        currentMin = i;
+        for (let j = i + 1; j < mergeArray.length; j++) {
+            if (mergeArray[currMin] > mergeArray[j]) {
+                currentMin = j;
+            }
+        }
+        temp = mergeArray[i];
+        mergeArray[i] = mergeArray[currentMin];
+        mergeArray[currentMin] = temp;
+    }
+    return mergeArray;
+}
+//9. remove characters
+//no filter, split, or join
+
+const removeCharacters = function (chars, str) {
+    let modified = "";
+    for (let i = 0; i < str.length; i++) {
+        let currChar = str.charAt(i);
+        //nested
+        for (let j = 0; j < chars.length; j++) {
+            if (currChar === chars.charAt(j)) {
+                currChar = "";
+            }
+        }
+        modified += currChar;
+    }
+    return modified;
+};
+
+//10. 2D array
+//write an algo tthat searches through a 2D array and whenever it find a 0, it sets the entire row and column to 0.
+
+const twoDArray = function (array) {
+    let mappedArray = [];
+    let cols = [];
+
+    for (let i = 0; i < array.length; i++) {
+        mappedArray.push(array[i]);
+
+        for (let j = 0; j < array[i].length; j++) {
+            if (array[i][j] === 0) {
+                console.log(`i, j: `, i, j);
+
+                mappedArray[i] = mappedArray[i].map(num => 0);
+                if (cols.indexOf(j) === -1) {
+                    cols.push(j);
+                }
+            }
+        }
+    }
+
+    for (let i = 0; i < array.length; i++) {
+
+        //console.log(`i`, i);
+        for (let val of cols) {
+            console.log(`val: `, val);
+            mappedArray[i][val] = 0;
+        }
+    }
+
+    return mappedArray;
+};
+
+//string rotation
+//write a program ttthat checks if str2 is rotation of str1.
+function stringRotation(str1, str2) {
+    let newString = '';
+
+    //set result to false at beginning
+    let result = false;
+    for (let i = 0; i < str2.length; i++) {
+
+        newString = str2.slice(i, str2.length + i) + str2.slice(-str2.length, i);
+        if (newString === str1) {
+            result = true;
+        }
+    }
+    console.log(`resultt: `, result);
+
+    return result;
+}
